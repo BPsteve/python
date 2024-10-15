@@ -1,0 +1,24 @@
+rom PIL import Image
+
+def lsb_extract(image_path):
+    img = Image.open(image_path)
+    img = img.convert("RGB")  # Ensure it's in RGB format
+    width, height = img.size
+
+    binary_data = ""
+    for y in range(height):
+        for x in range(width):
+            r, g, b = img.getpixel((x, y))
+            binary_data += str(b & 1)  # Extract LSB from blue channel
+
+    # Convert binary string to bytes
+    payload = bytearray()
+    for i in range(0, len(binary_data), 8):
+        byte = binary_data[i:i+8]
+        payload.append(int(byte, 2))
+
+    return payload
+
+payload = lsb_extract(' imagefile ')
+with open('extracted_payload.bin', 'wb') as f:
+    f.write(payload)
