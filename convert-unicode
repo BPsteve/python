@@ -1,0 +1,11 @@
+# Open the input file in read mode
+with open('/ path to .txt', 'r', encoding='utf-8') as infile:
+    # Read the contents of the file
+    encoded_string = infile.read()
+
+# Open the output file in write mode
+with open('baseout.txt', 'w') as outfile:
+    # Iterate over each character in the encoded string
+    for char in encoded_string:
+        # Write the Unicode code point of each character to the output file
+        outfile.write(f'{ord(char)}\n')
