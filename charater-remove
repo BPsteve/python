@@ -1,0 +1,9 @@
+# string to remove the 4th character from, change as needed
+string_to_transform = "lc_+iK+ave3n1Z3r?"
+
+# 4th character (index 3) from the string, change as needed remember index starts at 0 if more than one character needs to be removed incorporate more +
+transformed_string = string_to_transform[:3] + string_to_transform[4:]
+
+transformed_string
+
+print(transformed_string)
