@@ -1,0 +1,11 @@
+# String to transform
+string_to_transform = "lc_iK+ave3n1Z3r?"
+
+# Apply a -30 ASCII shift to each character adjust as needed
+shifted_string = "".join(
+    chr(ord(char) - 30) if 32 <= ord(char) - 30 <= 126 else chr((ord(char) - 30) % 126 + 32)
+    for char in string_to_transform
+)
+
+# Output the shifted string
+print(shifted_string)
