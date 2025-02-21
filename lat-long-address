@@ -1,0 +1,22 @@
+import pandas as pd
+import googlemaps
+
+# Load the spreadsheet
+df = pd.read_excel("locations.xlsx")
+
+# Initialize Google Maps API
+gmaps = googlemaps.Client(key="API_KEY")
+
+# Function to get latitude and longitude
+def get_lat_long(address):
+    geocode_result = gmaps.geocode(address)
+    if geocode_result:
+        location = geocode_result[0]["geometry"]["location"]
+        return location["lat"], location["lng"]
+    return None, None
+
+# Apply function to address column
+df["Latitude"], df["Longitude"] = zip(*df["Address"].apply(get_lat_long))
+
+# Save to new Excel file
+df.to_excel("locations-l-l.xlsx", index=False)
